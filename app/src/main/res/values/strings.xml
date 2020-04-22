@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MinhaPedida</string>
+    <string name="minhaComanda_text">Minha comanda</string>
+    <string name="addProduto_text">Adicionar Produto</string>
+    <string name="limparLista_text">Limpar Lista</string>
+    <string name="total_text">Total: </string>
+    <string name="moeda_text">R$ </string>
+    <string name="produto_text">Produto</string>
+    <string name="qtd_text">Quantidade</string>
+    <string name="enviar_text">Enviar</string>
+</resources>
