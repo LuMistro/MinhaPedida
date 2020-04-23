@@ -1,10 +1,7 @@
 package com.luiza.minhapedida.cotroller;
 
 import android.widget.ArrayAdapter;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
 
-import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.model.dao.ProdutoDao;
 import com.luiza.minhapedida.model.vo.Produto;
 import com.luiza.minhapedida.view.addProduto_activity;
@@ -14,69 +11,48 @@ import java.sql.SQLException;
 public class AddProdutoControl {
 
     private addProduto_activity activity;
-
-    private NumberPicker npQntd;
-    private Spinner spProdutos;
-
     private ProdutoDao produtoDao;
-
     private ArrayAdapter adapterProdutos;
 
     public AddProdutoControl(addProduto_activity activity) {
         this.activity = activity;
-        inicializaComponentes();
+        inicializa();
     }
 
-    public void inicializaComponentes() {
-        npQntd.findViewById(R.id.npQuantidade);
-        spProdutos.findViewById(R.id.spnrProdutos);
-
+    private void inicializa() {
         produtoDao = new ProdutoDao(this.activity);
-
         configuraNumberPicker();
+        configSpinner();
     }
 
 
     public void configuraNumberPicker() {
-        npQntd.setMaxValue(100);
-        npQntd.setMinValue(1);
-        npQntd.setWrapSelectorWheel(true);
+        activity.getNumberPicker().setMaxValue(100);
+        activity.getNumberPicker().setMinValue(1);
+        activity.getNumberPicker().setWrapSelectorWheel(true);
     }
 
     private void configSpinner() {
-
         try {
-            produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0));
-            produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0));
-            produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0));
-            produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5));
-            produtoDao.getDao().createIfNotExists(new Produto(5, "Petiscos", 6.0));
+            if (produtoDao.getDao() != null) {
+                produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0));
+                produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0));
+                produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0));
+                produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5));
+                produtoDao.getDao().createIfNotExists(new Produto(5, "Petiscos", 6.0));
 
-            adapterProdutos = new ArrayAdapter<>(
-                    activity,
-                    android.R.layout.simple_spinner_item,
-                    produtoDao.listar()
-            );
-            activity.getSpinner().setAdapter(adapterProdutos);
+                adapterProdutos = new ArrayAdapter<>(
+                        activity,
+                        android.R.layout.simple_spinner_item,
+                        produtoDao.listar()
+                );
+                activity.getSpinner().setAdapter(adapterProdutos);
+            } else {
+                System.out.println("ProdutoDao.getDao tá nulo, mano");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public NumberPicker getNpQntd() {
-        return npQntd;
-    }
-
-    public void setNpQntd(NumberPicker npQntd) {
-        this.npQntd = npQntd;
-    }
-
-    public Spinner getSpProdutos() {
-        return spProdutos;
-    }
-
-    public void setSpProdutos(Spinner spProdutos) {
-        this.spProdutos = spProdutos;
     }
 
     public ProdutoDao getProdutoDao() {
