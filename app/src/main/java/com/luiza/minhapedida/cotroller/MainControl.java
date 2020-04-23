@@ -22,7 +22,7 @@ public class MainControl {
 
     //Para o ListView
     private ArrayAdapter<ProdutoItem> adapterProdutoItem;
-    
+
     private List<ProdutoItem> listProdutoItems;
 
     private ProdutoItem produtoItem;
@@ -46,13 +46,16 @@ public class MainControl {
         //Elementos da lista
         listProdutoItems = new ArrayList<>();
         try {
-            listProdutoItems = produtoItemDao.getDao().queryForAll();
-            adapterProdutoItem = new ArrayAdapter<>(
-                    activity,
-                    android.R.layout.simple_list_item_1,
-                    listProdutoItems
-            );
-            activity.getLvProdutos().setAdapter(adapterProdutoItem);
+            if (!listProdutoItems.isEmpty()) {
+                listProdutoItems = produtoItemDao.getDao().queryForAll();
+                adapterProdutoItem = new ArrayAdapter<>(
+                        activity,
+                        android.R.layout.simple_list_item_1,
+                        listProdutoItems
+                );
+                activity.getLvProdutos().setAdapter(adapterProdutoItem);
+            }
+            System.out.println("Lista tá vazia, brother");
         } catch (SQLException e) {
             e.printStackTrace();
         }
