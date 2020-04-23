@@ -20,9 +20,9 @@ public class AddProdutoControl {
     }
 
     private void inicializa() {
-        produtoDao = new ProdutoDao(this.activity);
         configuraNumberPicker();
         configSpinner();
+        produtoDao = new ProdutoDao(this.activity);
     }
 
 
