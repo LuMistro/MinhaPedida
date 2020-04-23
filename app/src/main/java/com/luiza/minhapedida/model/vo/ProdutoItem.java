@@ -1,10 +1,21 @@
 package com.luiza.minhapedida.model.vo;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable
 public class ProdutoItem {
 
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
+
+    @DatabaseField(foreign = true)
     private Produto produto;
+
+    @DatabaseField(canBeNull = false)
     private Integer quantidade;
+
+    @DatabaseField
     private Double subTotal;
 
     public ProdutoItem() {

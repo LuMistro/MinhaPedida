@@ -1,9 +1,19 @@
 package com.luiza.minhapedida.model.vo;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.luiza.minhapedida.model.dao.ProdutoDao;
+
+@DatabaseTable(daoClass = ProdutoDao.class)
 public class Produto {
 
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
+
+    @DatabaseField(canBeNull = false, width = 110, unique = true)
     private String nome;
+
+    @DatabaseField(canBeNull = false)
     private Double preco;
 
     public Produto() {

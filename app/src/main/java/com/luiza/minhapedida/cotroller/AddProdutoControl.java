@@ -6,24 +6,32 @@ import android.widget.Spinner;
 
 import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.model.dao.ProdutoDao;
-import com.luiza.minhapedida.model.dao.ProdutoItemDao;
 import com.luiza.minhapedida.model.vo.Produto;
+import com.luiza.minhapedida.view.addProduto_activity;
 
 import java.sql.SQLException;
 
 public class AddProdutoControl {
 
+    private addProduto_activity activity;
 
     private NumberPicker npQntd;
     private Spinner spProdutos;
+
     private ProdutoDao produtoDao;
 
     private ArrayAdapter adapterProdutos;
+
+    public AddProdutoControl(addProduto_activity activity) {
+        this.activity = activity;
+        inicializaComponentes();
+    }
 
     public void inicializaComponentes() {
         npQntd.findViewById(R.id.npQuantidade);
         spProdutos.findViewById(R.id.spnrProdutos);
 
+        produtoDao = new ProdutoDao(this.activity);
 
         configuraNumberPicker();
     }
@@ -44,12 +52,12 @@ public class AddProdutoControl {
             produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5));
             produtoDao.getDao().createIfNotExists(new Produto(5, "Petiscos", 6.0));
 
-            adapterProdutos = new ArrayAdapter(
-                    this,
+            adapterProdutos = new ArrayAdapter<>(
+                    activity,
                     android.R.layout.simple_spinner_item,
-                    comandaDao.listar()
+                    produtoDao.listar()
             );
-            this.getSpProdutos().setAdapter(adapterProdutos);
+            activity.getSpinner().setAdapter(adapterProdutos);
         } catch (SQLException e) {
             e.printStackTrace();
         }

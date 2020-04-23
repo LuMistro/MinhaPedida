@@ -14,6 +14,7 @@ import com.luiza.minhapedida.model.vo.ProdutoItem;
 import com.luiza.minhapedida.view.MainActivity;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainControl {
@@ -35,12 +36,14 @@ public class MainControl {
         comandaDao = new ComandaDao(this.activity);
         produtoDao = new ProdutoDao(this.activity);
         produtoItemDao = new ProdutoItemDao(this.activity);
-        configListViewEstados();
+        listProdutoItems = new ArrayList<>();
+        configListViewProdutos();
     }
 
 
-    private void configListViewEstados() {
+    private void configListViewProdutos() {
         //Elementos da lista
+        listProdutoItems = new ArrayList<>();
         try {
             listProdutoItems = produtoItemDao.getDao().queryForAll();
             adapterProdutoItem = new ArrayAdapter<>(
@@ -167,7 +170,6 @@ public class MainControl {
 
 //        limparForm();
 //    }
-
 
 
 //

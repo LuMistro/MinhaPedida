@@ -1,18 +1,29 @@
 package com.luiza.minhapedida.model.vo;
 
-import java.util.List;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Collection;
+
+@DatabaseTable
 public class Comanda {
-
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
-    private List<ProdutoItem> produtoItems;
+
+    @ForeignCollectionField(eager = true)
+    private Collection<ProdutoItem> produtoItemCollection;
+
+    @DatabaseField(canBeNull = false)
+    private Double totalComanda;
 
     public Comanda() {
     }
 
-    public Comanda(Integer id, List<ProdutoItem> produtoItems) {
+    public Comanda(Integer id, Collection<ProdutoItem> produtoItemCollection, Double totalComanda) {
         this.id = id;
-        this.produtoItems = produtoItems;
+        this.produtoItemCollection = produtoItemCollection;
+        this.totalComanda = totalComanda;
     }
 
     public Integer getId() {
@@ -23,11 +34,19 @@ public class Comanda {
         this.id = id;
     }
 
-    public List<ProdutoItem> getProdutoItems() {
-        return produtoItems;
+    public Collection<ProdutoItem> getProdutoItemCollection() {
+        return produtoItemCollection;
     }
 
-    public void setProdutoItems(List<ProdutoItem> produtoItems) {
-        this.produtoItems = produtoItems;
+    public void setProdutoItemCollection(Collection<ProdutoItem> produtoItemCollection) {
+        this.produtoItemCollection = produtoItemCollection;
+    }
+
+    public Double getTotalComanda() {
+        return totalComanda;
+    }
+
+    public void setTotalComanda(Double totalComanda) {
+        this.totalComanda = totalComanda;
     }
 }
