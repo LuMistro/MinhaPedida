@@ -2,9 +2,8 @@ package com.luiza.minhapedida.model.vo;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.luiza.minhapedida.model.dao.ProdutoDao;
 
-@DatabaseTable(daoClass = ProdutoDao.class)
+@DatabaseTable
 public class Produto {
 
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)

@@ -16,13 +16,13 @@ public class AddProdutoControl {
 
     public AddProdutoControl(addProduto_activity activity) {
         this.activity = activity;
+        produtoDao = new ProdutoDao(this.activity);
         inicializa();
     }
 
     private void inicializa() {
         configuraNumberPicker();
         configSpinner();
-        produtoDao = new ProdutoDao(this.activity);
     }
 
 
@@ -34,22 +34,22 @@ public class AddProdutoControl {
 
     private void configSpinner() {
         try {
-            if (produtoDao.getDao() != null) {
-                produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0));
-                produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0));
-                produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0));
-                produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5));
-                produtoDao.getDao().createIfNotExists(new Produto(5, "Petiscos", 6.0));
+//            if (produtoDao.getDao() != null) {
+            produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0));
+            produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0));
+            produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0));
+            produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5));
+            produtoDao.getDao().createIfNotExists(new Produto(5, "Petiscos", 6.0));
 
-                adapterProdutos = new ArrayAdapter<>(
-                        activity,
-                        android.R.layout.simple_spinner_item,
-                        produtoDao.listar()
-                );
-                activity.getSpinner().setAdapter(adapterProdutos);
-            } else {
-                System.out.println("ProdutoDao.getDao tá nulo, mano");
-            }
+            adapterProdutos = new ArrayAdapter<>(
+                    activity,
+                    android.R.layout.simple_spinner_item,
+                    produtoDao.listar()
+            );
+            activity.getSpinner().setAdapter(adapterProdutos);
+//            } else {
+//                System.out.println("ProdutoDao.getDao tá nulo");
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
