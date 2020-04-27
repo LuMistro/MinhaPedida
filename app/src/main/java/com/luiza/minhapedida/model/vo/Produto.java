@@ -1,9 +1,11 @@
 package com.luiza.minhapedida.model.vo;
 
+import androidx.annotation.NonNull;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable
+@DatabaseTable(tableName = "produto")
 public class Produto {
 
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
@@ -46,5 +48,11 @@ public class Produto {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nome + " - " + "R$ " + this.preco;
     }
 }

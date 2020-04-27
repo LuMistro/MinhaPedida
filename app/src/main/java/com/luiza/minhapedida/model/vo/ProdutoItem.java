@@ -9,23 +9,28 @@ public class ProdutoItem {
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
-    @DatabaseField(foreign = true)
-    private Produto produto;
-
     @DatabaseField(canBeNull = false)
     private Integer quantidade;
 
     @DatabaseField
     private Double subTotal;
 
+    @DatabaseField(foreign = true, foreignColumnName = "id")
+    private Produto produto;
+
+    @DatabaseField(foreign = true, foreignColumnName = "id")
+    private Comanda comanda;
+
+
     public ProdutoItem() {
     }
 
-    public ProdutoItem(Integer id, Produto produto, Integer quantidade, Double subTotal) {
+    public ProdutoItem(Integer id, Integer quantidade, Double subTotal, Produto produto, Comanda comanda) {
         this.id = id;
-        this.produto = produto;
         this.quantidade = quantidade;
         this.subTotal = subTotal;
+        this.produto = produto;
+        this.comanda = comanda;
     }
 
     public Integer getId() {
@@ -58,5 +63,13 @@ public class ProdutoItem {
 
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public Comanda getComanda() {
+        return comanda;
+    }
+
+    public void setComanda(Comanda comanda) {
+        this.comanda = comanda;
     }
 }

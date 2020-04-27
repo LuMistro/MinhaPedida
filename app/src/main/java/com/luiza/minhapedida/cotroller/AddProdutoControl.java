@@ -34,7 +34,6 @@ public class AddProdutoControl {
 
     private void configSpinner() {
         try {
-//            if (produtoDao.getDao() != null) {
             produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0));
             produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0));
             produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0));
@@ -47,9 +46,6 @@ public class AddProdutoControl {
                     produtoDao.listar()
             );
             activity.getSpinner().setAdapter(adapterProdutos);
-//            } else {
-//                System.out.println("ProdutoDao.getDao tá nulo");
-//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
