@@ -27,6 +27,8 @@ public class addProduto_activity extends AppCompatActivity {
         inicializa();
         control = new AddProdutoControl(this);
         control.pegaDadosTela();
+
+
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

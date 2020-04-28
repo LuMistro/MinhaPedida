@@ -140,10 +140,7 @@ public class MainControl {
         }
     }
 
-    public ProdutoItem buscarPorId(Integer idRecebido) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + produtoItemDao.buscaPorId(idRecebido));
-        return produtoItemDao.buscaPorId(idRecebido);
-    }
+
 //
 
 //

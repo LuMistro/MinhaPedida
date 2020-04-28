@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         recebeIntentComProdutoItem();
         control.atualizaListView(produtoItems);
 
@@ -60,16 +60,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void recebeIntentComProdutoItem() {
-        produtoItem = getIntent().getSerializableExtra("produtoItem");
-
-//        produtoItems = (ArrayList<ProdutoItem>)
-//                getIntent().getSerializableExtra("produtoItemSelecionado");
-
-//        System.out.println("produtoItemSelecionado: " + produtoItem.getProduto().getNome());
-
-//        Integer idRecebido = Integer.valueOf(getIntent().getStringExtra("produtoItemSelecionado"));
-//        produtoItems.add(control.buscarPorId(idRecebido));
-
+        produtoItem = (ProdutoItem) getIntent().getSerializableExtra("produtoItemSelecionado");
+        produtoItems.add(produtoItem);
+        control.atualizaListView(produtoItems);
     }
 
 
