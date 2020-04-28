@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "produto")
-public class Produto {
+public class Produto implements Serializable {
 
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;

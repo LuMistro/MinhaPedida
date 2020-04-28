@@ -8,4 +8,8 @@
     <string name="produto_text">Produto</string>
     <string name="qtd_text">Quantidade</string>
     <string name="enviar_text">Enviar</string>
+    <string name="comanda_title">Comandas</string>
+    <string name="minhaComanda_title">Minha Comanda</string>
+    <string name="addProduto_title">Adicionar Produto</string>
+    <string name="cadastroProduto">Cadastro de Produtos</string>
 </resources>

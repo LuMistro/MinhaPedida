@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MinhaPedida</string>
+    <string name="minhaComanda_text">My command</string>
+    <string name="addProduto_text">Add Product</string>
+    <string name="limparLista_text">Clear List</string>
+    <string name="total_text">Total:</string>
+    <string name="moeda_text">U$</string>
+    <string name="produto_text">Product</string>
+    <string name="qtd_text">Amount</string>
+    <string name="enviar_text">Sent</string>
+    <string name="comanda_title">Commands</string>
+    <string name="minhaComanda_title">My Command</string>
+    <string name="addProduto_title">Add Product</string>
+    <string name="cadastroProduto">Product Registration</string>
+</resources>

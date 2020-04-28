@@ -38,34 +38,26 @@ public class MainControl {
         produtoDao = new ProdutoDao(this.activity);
         produtoItemDao = new ProdutoItemDao(this.activity);
         listProdutoItems = new ArrayList<>();
-        configListViewProdutos();
+        atualizaListView(listProdutoItems);
     }
 
 
-    private void configListViewProdutos() {
-        //Elementos da lista
-        listProdutoItems = new ArrayList<>();
-        try {
-            if (!listProdutoItems.isEmpty()) {
-                listProdutoItems = produtoItemDao.getDao().queryForAll();
-                adapterProdutoItem = new ArrayAdapter<>(
-                        activity,
-                        android.R.layout.simple_list_item_1,
-                        listProdutoItems
-                );
-                activity.getLvProdutos().setAdapter(adapterProdutoItem);
-            }
-            System.out.println("Lista tá vazia, brother");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void atualizaListView(List<ProdutoItem> produtoItems) {
 
-        addCliqueLongoLvEstados();
-        addCliqueCurtoLvEstados();
+        adapterProdutoItem = new ArrayAdapter<>(
+                activity,
+                android.R.layout.simple_list_item_1,
+                produtoItems
+        );
+        activity.getLvProdutos().setAdapter(adapterProdutoItem);
+//
+
+        addCliqueLongolvProdutoItem();
+        addCliqueCurtolvProdutoItem();
     }
 
 
-    private void addCliqueLongoLvEstados() {
+    private void addCliqueLongolvProdutoItem() {
         activity.getLvProdutos().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,7 +68,7 @@ public class MainControl {
         });
     }
 
-    public void addCliqueCurtoLvEstados() {
+    public void addCliqueCurtolvProdutoItem() {
         activity.getLvProdutos().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -146,6 +138,11 @@ public class MainControl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ProdutoItem buscarPorId(Integer idRecebido) {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + produtoItemDao.buscaPorId(idRecebido));
+        return produtoItemDao.buscaPorId(idRecebido);
     }
 //
 

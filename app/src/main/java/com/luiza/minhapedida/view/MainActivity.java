@@ -12,6 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.cotroller.MainControl;
+import com.luiza.minhapedida.model.vo.ProdutoItem;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLimparLista;
     private TextView tvTotal;
     private ListView lvProdutos;
+
+    private List<ProdutoItem> produtoItems;
+    private Serializable produtoItem;
 
     private MainControl control;
 
@@ -30,16 +38,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onRestart() {
+        super.onRestart();
+        recebeIntentComProdutoItem();
+        control.atualizaListView(produtoItems);
 
     }
-
-    public void chamaTelaAddProduto(View view) {
-        Intent intent = new Intent(this, addProduto_activity.class);
-        startActivity(intent);
-    }
-
 
     private void inicializa() {
         btnAddProduto = findViewById(R.id.btnAddProduto);
@@ -47,9 +51,32 @@ public class MainActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         lvProdutos = findViewById(R.id.lvProdutos);
 
+        produtoItems = new ArrayList<>();
+        produtoItem = new ProdutoItem();
+
         control = new MainControl(this);
+
+        recebeIntentComProdutoItem();
     }
 
+    public void recebeIntentComProdutoItem() {
+        produtoItem = getIntent().getSerializableExtra("produtoItem");
+
+//        produtoItems = (ArrayList<ProdutoItem>)
+//                getIntent().getSerializableExtra("produtoItemSelecionado");
+
+//        System.out.println("produtoItemSelecionado: " + produtoItem.getProduto().getNome());
+
+//        Integer idRecebido = Integer.valueOf(getIntent().getStringExtra("produtoItemSelecionado"));
+//        produtoItems.add(control.buscarPorId(idRecebido));
+
+    }
+
+
+    public void chamaTelaAddProduto(View view) {
+        Intent intent = new Intent(this, addProduto_activity.class);
+        startActivity(intent);
+    }
 
     public void limparLista(View view) {
         lvProdutos.setAdapter(null);

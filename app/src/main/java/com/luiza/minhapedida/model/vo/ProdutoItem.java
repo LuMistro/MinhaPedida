@@ -3,8 +3,10 @@ package com.luiza.minhapedida.model.vo;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable
-public class ProdutoItem {
+public class ProdutoItem implements Serializable {
 
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
@@ -72,4 +74,5 @@ public class ProdutoItem {
     public void setComanda(Comanda comanda) {
         this.comanda = comanda;
     }
+
 }

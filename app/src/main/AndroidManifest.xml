@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.addProduto_activity"></activity>
-        <activity android:name=".view.MainActivity">
+        <activity
+            android:name=".view.addProduto_activity"
+            android:label="@string/addProduto_title" />
+        <activity
+            android:name=".view.cadastrarProduto_activity"
+            android:label="@string/addProduto_title" />
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/minhaComanda_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

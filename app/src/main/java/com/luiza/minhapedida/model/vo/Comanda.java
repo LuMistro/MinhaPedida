@@ -4,10 +4,11 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 @DatabaseTable
-public class Comanda {
+public class Comanda implements Serializable {
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
