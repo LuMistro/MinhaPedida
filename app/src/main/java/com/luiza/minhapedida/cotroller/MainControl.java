@@ -75,7 +75,7 @@ public class MainControl {
 
                 produtoItem = adapterProdutoItem.getItem(position);
 
-                AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+                final AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
                 alerta.setIcon(android.R.drawable.ic_menu_edit);
                 alerta.setTitle("Produto");
                 alerta.setMessage(produtoItem.toString());
@@ -100,6 +100,12 @@ public class MainControl {
                     public void onClick(DialogInterface dialog, int which) {
                         produtoItem.setQuantidade(produtoItem.getQuantidade() + 1);
                         editar(produtoItem);
+                    }
+                });
+                alerta.setNeutralButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alerta.setCancelable(true);
                     }
                 });
                 alerta.show();
