@@ -34,7 +34,7 @@ public class AddProdutoControl {
 
 
     public void configuraNumberPicker() {
-        activity.getNumberPicker().setMaxValue(100);
+        activity.getNumberPicker().setMaxValue(99);
         activity.getNumberPicker().setMinValue(1);
         activity.getNumberPicker().setWrapSelectorWheel(true);
     }
