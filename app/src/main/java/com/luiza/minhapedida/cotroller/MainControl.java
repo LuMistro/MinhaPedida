@@ -84,6 +84,14 @@ public class MainControl {
                     public void onClick(DialogInterface dialog, int which) {
                         produtoItem.setQuantidade(produtoItem.getQuantidade() - 1);
                         editar(produtoItem);
+                        if (produtoItem.getQuantidade() < 1) {
+                            try {
+                                produtoItemDao.getDao().delete(produtoItem);
+                                adapterProdutoItem.remove(produtoItem);
+                            } catch (SQLException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
                     }
                 });
 
