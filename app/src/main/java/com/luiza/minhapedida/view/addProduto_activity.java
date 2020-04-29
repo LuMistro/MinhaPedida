@@ -26,13 +26,13 @@ public class addProduto_activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_produto);
         inicializa();
         control = new AddProdutoControl(this);
-        control.pegaDadosTela();
 
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                control.pegaDadosTela();
                 Intent intent = new Intent(addProduto_activity.this, MainActivity.class);
                 intent.putExtra("produtoItemSelecionado", control.getProdutoItem());
                 startActivity(intent);

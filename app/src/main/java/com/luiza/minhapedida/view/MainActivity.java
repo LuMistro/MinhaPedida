@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         recebeIntentComProdutoItem();
         control.atualizaListView(produtoItems);
-
     }
 
     private void inicializa() {
@@ -60,9 +59,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void recebeIntentComProdutoItem() {
-        produtoItem = (ProdutoItem) getIntent().getSerializableExtra("produtoItemSelecionado");
-        produtoItems.add(produtoItem);
-        control.atualizaListView(produtoItems);
+        ProdutoItem pItem = new ProdutoItem();
+        pItem = (ProdutoItem) getIntent().getSerializableExtra("produtoItemSelecionado");
+        if (pItem != null) {
+            produtoItems.add((ProdutoItem) pItem);
+        }
+//        control.atualizaListView(produtoItems);
     }
 
 

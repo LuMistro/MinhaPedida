@@ -64,8 +64,8 @@ public class AddProdutoControl {
 
 
     public void pegaDadosTela() {
-        produtoItem.setProduto((Produto) activity.getSpinner().getSelectedItem());
-        produtoItem.setQuantidade(activity.getNumberPicker().getValue());
+        produtoItem.setProduto((Produto) this.activity.getSpinner().getSelectedItem());
+        produtoItem.setQuantidade(this.activity.getNumberPicker().getValue());
     }
 
 

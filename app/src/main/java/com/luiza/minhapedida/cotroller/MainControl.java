@@ -38,7 +38,7 @@ public class MainControl {
         produtoDao = new ProdutoDao(this.activity);
         produtoItemDao = new ProdutoItemDao(this.activity);
         listProdutoItems = new ArrayList<>();
-        atualizaListView(listProdutoItems);
+//        atualizaListView(listProdutoItems);
     }
 
 
@@ -50,7 +50,6 @@ public class MainControl {
                 produtoItems
         );
         activity.getLvProdutos().setAdapter(adapterProdutoItem);
-//
 
         addCliqueLongolvProdutoItem();
         addCliqueCurtolvProdutoItem();
@@ -98,7 +97,7 @@ public class MainControl {
     public void confirmarExclusaoAction(final ProdutoItem produtoItem) {
         AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
         alerta.setTitle("Excluindo Produto da comanda");
-        alerta.setMessage("Deseja realmente excluir o produto da comanda " + produtoItem.getProduto().getNome() + "?");
+        alerta.setMessage("Deseja realmente excluir o produto " + produtoItem.getProduto().getNome() + " da comanda?");
         alerta.setIcon(android.R.drawable.ic_menu_delete);
         alerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
             @Override

@@ -1,5 +1,7 @@
 package com.luiza.minhapedida.model.vo;
 
+import androidx.annotation.NonNull;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -75,4 +77,9 @@ public class ProdutoItem implements Serializable {
         this.comanda = comanda;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return produto.getNome() + " - " + quantidade + "un - R$" + getSubTotal();
+    }
 }
