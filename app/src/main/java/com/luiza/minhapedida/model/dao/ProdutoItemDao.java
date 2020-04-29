@@ -22,4 +22,13 @@ public class ProdutoItemDao extends DaoHelper<ProdutoItem> {
         return null;
     }
 
+    public void deleteAll() {
+        try {
+            getDao().executeRaw("delete  from produtoItem");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

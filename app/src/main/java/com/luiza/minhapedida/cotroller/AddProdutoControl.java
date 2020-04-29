@@ -3,24 +3,24 @@ package com.luiza.minhapedida.cotroller;
 import android.widget.ArrayAdapter;
 
 import com.luiza.minhapedida.model.dao.ProdutoDao;
+import com.luiza.minhapedida.model.dao.ProdutoItemDao;
 import com.luiza.minhapedida.model.vo.Produto;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
 import com.luiza.minhapedida.view.addProduto_activity;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddProdutoControl {
 
     private addProduto_activity activity;
     private ArrayAdapter adapterProdutos;
-    private List<ProdutoItem> produtoItems;
+    private ProdutoItemDao produtoItemDao;
     private ProdutoDao produtoDao;
     private ProdutoItem produtoItem;
 
     public AddProdutoControl(addProduto_activity activity) {
         this.activity = activity;
+        produtoItemDao = new ProdutoItemDao(this.activity);
         produtoDao = new ProdutoDao(this.activity);
         inicializa();
         pegaDadosTela();
@@ -30,7 +30,6 @@ public class AddProdutoControl {
         configuraNumberPicker();
         configSpinner();
         produtoItem = new ProdutoItem();
-        produtoItems = new ArrayList<>();
     }
 
 
@@ -64,10 +63,17 @@ public class AddProdutoControl {
 
 
     public void pegaDadosTela() {
-        produtoItem.setProduto((Produto) this.activity.getSpinner().getSelectedItem());
-        produtoItem.setQuantidade(this.activity.getNumberPicker().getValue());
+        produtoItem.setProduto((Produto) activity.getSpinner().getSelectedItem());
+        produtoItem.setQuantidade(activity.getNumberPicker().getValue());
     }
 
+    public void cadastrarProdutoItem(ProdutoItem produtoItem) {
+        try {
+            produtoItemDao.getDao().createOrUpdate(produtoItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public ProdutoDao getProdutoDao() {
         return produtoDao;
@@ -85,14 +91,6 @@ public class AddProdutoControl {
         this.adapterProdutos = adapterProdutos;
     }
 
-    public List<ProdutoItem> getProdutoItems() {
-        return produtoItems;
-    }
-
-    public void setProdutoItems(List<ProdutoItem> produtoItems) {
-        this.produtoItems = produtoItems;
-    }
-
     public ProdutoItem getProdutoItem() {
         return produtoItem;
     }
@@ -100,4 +98,6 @@ public class AddProdutoControl {
     public void setProdutoItem(ProdutoItem produtoItem) {
         this.produtoItem = produtoItem;
     }
+
+
 }

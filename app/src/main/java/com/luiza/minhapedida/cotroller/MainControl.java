@@ -7,9 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.luiza.minhapedida.model.dao.ComandaDao;
-import com.luiza.minhapedida.model.dao.ProdutoDao;
 import com.luiza.minhapedida.model.dao.ProdutoItemDao;
+import com.luiza.minhapedida.model.vo.Comanda;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
 import com.luiza.minhapedida.view.MainActivity;
 
@@ -27,28 +26,30 @@ public class MainControl {
 
     private ProdutoItem produtoItem;
 
-    //Criação dos DAOS
-    private ComandaDao comandaDao;
-    private ProdutoDao produtoDao;
+    private Comanda comanda;
+
     private ProdutoItemDao produtoItemDao;
 
     public MainControl(MainActivity activity) {
         this.activity = activity;
-        comandaDao = new ComandaDao(this.activity);
-        produtoDao = new ProdutoDao(this.activity);
+        comanda = new Comanda();
         produtoItemDao = new ProdutoItemDao(this.activity);
         listProdutoItems = new ArrayList<>();
-//        atualizaListView(listProdutoItems);
     }
 
 
-    public void atualizaListView(List<ProdutoItem> produtoItems) {
+    public void atualizaListView() {
+        comanda.setProdutoItemCollection(this.listProdutoItems);
 
-        adapterProdutoItem = new ArrayAdapter<>(
-                activity,
-                android.R.layout.simple_list_item_1,
-                produtoItems
-        );
+        try {
+            adapterProdutoItem = new ArrayAdapter<>(
+                    activity,
+                    android.R.layout.simple_list_item_1,
+                    produtoItemDao.getDao().queryForAll()
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         activity.getLvProdutos().setAdapter(adapterProdutoItem);
 
         addCliqueLongolvProdutoItem();
@@ -75,17 +76,21 @@ public class MainControl {
                 produtoItem = adapterProdutoItem.getItem(position);
 
                 AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
-                alerta.setTitle("Estado");
+                alerta.setIcon(android.R.drawable.ic_menu_edit);
+                alerta.setTitle("Produto");
                 alerta.setMessage(produtoItem.toString());
-                alerta.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                alerta.setNegativeButton("-1un", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        produtoItem = null;
+                        produtoItem.setQuantidade(produtoItem.getQuantidade() - 1);
+                        editar(produtoItem);
                     }
                 });
-                alerta.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+
+                alerta.setPositiveButton("+1un", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        produtoItem.setQuantidade(produtoItem.getQuantidade() + 1);
                         editar(produtoItem);
                     }
                 });
@@ -133,62 +138,32 @@ public class MainControl {
                 Toast.makeText(activity, "Sucesso", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(activity, "Tente mais tarde", Toast.LENGTH_SHORT).show();
+                System.out.println(produtoItemDao.getDao().queryForAll());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public void limparLista() {
+        adapterProdutoItem.clear();
+        produtoItemDao.deleteAll();
+        listProdutoItems = new ArrayList<>();
+    }
 
-//
+    public List<ProdutoItem> getListProdutoItems() {
+        return listProdutoItems;
+    }
 
-//
-//    public void salvarAction() {
-//        if (produtoItem == null) {
-//            cadastrar();
-//        } else {
-//            editar(get());
-//        }
-//
-//        produtoItem = null;
+    public void setListProdutoItems(List<ProdutoItem> listProdutoItems) {
+        this.listProdutoItems = listProdutoItems;
+    }
 
-       /*
-       Método utilizando creatrOrUpdate()
-       try {
-            Dao.CreateOrUpdateStatus res = estadoDao.getDao().createOrUpdate(estado);
-            if(res.isCreated()){
-                //Criou
-            } else if(res.isUpdated()){
-                //Editado
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+    public ProdutoItem getProdutoItem() {
+        return produtoItem;
+    }
 
-//        limparForm();
-//    }
-
-
-//
-//    private void cadastrar() {
-//        Estado estado = getEstadoForm();
-//        try {
-//            int res = estadoDao.getDao().create(estado); //Envia par o banco de dados
-//            adapterEstados.add(estado); //Atualiza no ListView
-//
-//            if (res > 0) {
-//                Toast.makeText(activity, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(activity, "Tente novamente em breve", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            //LOG
-//            Log.i("Testando", "Cadastrou");
-//            Toast.makeText(activity, "Id:" + estado.getId(), Toast.LENGTH_SHORT).show();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
+    public void setProdutoItem(ProdutoItem produtoItem) {
+        this.produtoItem = produtoItem;
+    }
 }

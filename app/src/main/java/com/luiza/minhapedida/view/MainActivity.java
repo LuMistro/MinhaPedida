@@ -14,10 +14,6 @@ import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.cotroller.MainControl;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     private Button btnAddProduto;
@@ -25,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTotal;
     private ListView lvProdutos;
 
-    private List<ProdutoItem> produtoItems;
-    private Serializable produtoItem;
+    private ProdutoItem produtoItem;
 
     private MainControl control;
 
@@ -35,13 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         inicializa();
-    }
+        control = new MainControl(this);
+        control.atualizaListView();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        recebeIntentComProdutoItem();
-        control.atualizaListView(produtoItems);
     }
 
     private void inicializa() {
@@ -50,23 +41,8 @@ public class MainActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         lvProdutos = findViewById(R.id.lvProdutos);
 
-        produtoItems = new ArrayList<>();
         produtoItem = new ProdutoItem();
-
-        control = new MainControl(this);
-
-        recebeIntentComProdutoItem();
     }
-
-    public void recebeIntentComProdutoItem() {
-        ProdutoItem pItem = new ProdutoItem();
-        pItem = (ProdutoItem) getIntent().getSerializableExtra("produtoItemSelecionado");
-        if (pItem != null) {
-            produtoItems.add((ProdutoItem) pItem);
-        }
-//        control.atualizaListView(produtoItems);
-    }
-
 
     public void chamaTelaAddProduto(View view) {
         Intent intent = new Intent(this, addProduto_activity.class);
@@ -74,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void limparLista(View view) {
-        lvProdutos.setAdapter(null);
+        control.limparLista();
         Toast.makeText(this, "Você limpou a lista de Itens", Toast.LENGTH_SHORT).show();
     }
 

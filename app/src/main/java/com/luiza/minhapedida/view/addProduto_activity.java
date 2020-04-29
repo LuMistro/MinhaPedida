@@ -20,6 +20,7 @@ public class addProduto_activity extends AppCompatActivity {
     private NumberPicker numberPicker;
     private Button btnEnviar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +35,11 @@ public class addProduto_activity extends AppCompatActivity {
 
                 control.pegaDadosTela();
                 Intent intent = new Intent(addProduto_activity.this, MainActivity.class);
-                intent.putExtra("produtoItemSelecionado", control.getProdutoItem());
                 startActivity(intent);
 
-                printaOProdutoSelecionado();
+                Toast.makeText(addProduto_activity.this, "Produto adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                control.cadastrarProdutoItem(control.getProdutoItem());
             }
         });
     }
@@ -46,15 +48,6 @@ public class addProduto_activity extends AppCompatActivity {
         spinner = findViewById(R.id.spnrProdutos);
         numberPicker = findViewById(R.id.npQuantidade);
         btnEnviar = findViewById(R.id.btnEnviar);
-    }
-
-
-    public void printaOProdutoSelecionado() {
-        Toast.makeText(this, "Produto adicionado a comanda!" +
-                "\n" + "Nome: " + control.getProdutoItem().getProduto().getNome() +
-                "\n" + "Quantidade: " + control.getProdutoItem().getQuantidade() +
-                "\n" + "Preço Unitário: " + control.getProdutoItem().getProduto().getPreco() +
-                "\n" + "Valor Total: " + control.getProdutoItem().getSubTotal(), Toast.LENGTH_SHORT).show();
     }
 
     public Spinner getSpinner() {
