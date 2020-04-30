@@ -67,6 +67,6 @@ public class Produto implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return this.nome + " - " + "R$ " + this.preco;
+        return this.nome + " - " + "R$ " + this.preco + " Status: " + this.status;
     }
 }
