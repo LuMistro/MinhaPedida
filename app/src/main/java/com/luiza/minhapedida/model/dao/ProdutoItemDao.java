@@ -29,6 +29,4 @@ public class ProdutoItemDao extends DaoHelper<ProdutoItem> {
             e.printStackTrace();
         }
     }
-
-
 }

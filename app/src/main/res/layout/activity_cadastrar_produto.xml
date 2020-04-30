@@ -13,11 +13,73 @@
         android:layout_margin="15dp"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nomeProduto"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
-        <Button
+        <EditText
+            android:id="@+id/etNomeProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="sxascascasc ascasc"/>
+            android:background="@drawable/edit_text_bordas_arredondadas"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/preco"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/etPrecoProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bordas_arredondadas"
+            android:inputType="numberDecimal"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:textSize="15sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status"
+                android:textColor="@color/white" />
+
+            <Switch
+                android:id="@+id/switchStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_bordas_arredondadas"
+            android:text="@string/salvar"
+            android:textColor="@color/white" />
+
+
+        <ListView
+            android:id="@+id/lvProdutosCadastrados"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:background="@color/whiteTransparent" />
 
     </LinearLayout>
 </LinearLayout>

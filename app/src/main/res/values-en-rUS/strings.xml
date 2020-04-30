@@ -13,4 +13,7 @@
     <string name="minhaComanda_title">My Command</string>
     <string name="addProduto_title">Add Product</string>
     <string name="cadastroProduto">Product Registration</string>
+    <string name="nomeProduto">Product Name</string>
+    <string name="preco">Value</string>
+    <string name="salvar">Save</string>
 </resources>

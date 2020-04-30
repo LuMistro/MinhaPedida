@@ -21,4 +21,14 @@ public class ProdutoDao extends DaoHelper<Produto> {
         }
         return null;
     }
+
+    public List<Produto> listaSomenteOsAtivos() {
+        try {
+            return getDao().queryBuilder().where().eq("status", true).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

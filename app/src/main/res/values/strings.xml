@@ -12,4 +12,8 @@
     <string name="minhaComanda_title">Minha Comanda</string>
     <string name="addProduto_title">Adicionar Produto</string>
     <string name="cadastroProduto">Cadastro de Produtos</string>
+    <string name="nomeProduto">Nome do Produto</string>
+    <string name="preco">Preço</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="salvar">Salvar</string>
 </resources>

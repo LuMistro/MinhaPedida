@@ -19,13 +19,17 @@ public class Produto implements Serializable {
     @DatabaseField(canBeNull = false)
     private Double preco;
 
+    @DatabaseField(canBeNull = false)
+    private Boolean status;
+
     public Produto() {
     }
 
-    public Produto(Integer id, String nome, Double preco) {
+    public Produto(Integer id, String nome, Double preco, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -50,6 +54,14 @@ public class Produto implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @NonNull
