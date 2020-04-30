@@ -37,4 +37,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation group: 'com.j256.ormlite', name: 'ormlite-core', version: '5.0'
     implementation group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
+    implementation 'com.google.android.material:material:1.1.0'
 }

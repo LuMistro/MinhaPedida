@@ -4,54 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
+    android:background="@drawable/background_dark"
     android:orientation="vertical"
     tools:context=".view.addProduto_activity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/produto_text"
-        android:textSize="15sp" />
-
-    <Spinner
-        android:id="@+id/spnrProdutos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/limparLista_text"
-        android:padding="15dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/qtd_text"
+            android:layout_marginTop="10dp"
+            android:text="@string/produto_text"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
-        <NumberPicker
-            android:id="@+id/npQuantidade"
+        <Spinner
+            android:id="@+id/spnrProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/limparLista_text"
+            android:background="@color/whiteTransparent"
+            android:padding="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/qtd_text"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <NumberPicker
+                android:id="@+id/npQuantidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@color/whiteTransparent"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bordas_arredondadas"
+            android:text="@string/enviar_text"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:gravity="center" />
+            android:layout_gravity="bottom|right|end"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/add"
+            android:onClick="chamaTelaCadastrarProduto"
+            android:tooltipText="@string/cadastroProduto"
+            app:fabSize="normal" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnEnviar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/btn_bordas_arredondadas"
-        android:onClick="enviar"
-        android:text="@string/enviar_text"
-        android:textColor="@color/white" />
-
 </LinearLayout>

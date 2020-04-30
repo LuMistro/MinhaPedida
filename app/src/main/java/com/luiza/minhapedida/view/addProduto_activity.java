@@ -50,6 +50,12 @@ public class addProduto_activity extends AppCompatActivity {
         btnEnviar = findViewById(R.id.btnEnviar);
     }
 
+    public void chamaTelaCadastrarProduto(View view) {
+        Intent intent = new Intent(this, cadastrarProduto_activity.class);
+        startActivity(intent);
+    }
+
+
     public Spinner getSpinner() {
         return spinner;
     }

@@ -14,7 +14,7 @@
             android:label="@string/addProduto_title" />
         <activity
             android:name=".view.cadastrarProduto_activity"
-            android:label="@string/addProduto_title" />
+            android:label="@string/cadastroProduto" />
         <activity
             android:name=".view.MainActivity"
             android:label="@string/minhaComanda_title">
