@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.model.dao.ProdutoItemDao;
 import com.luiza.minhapedida.model.vo.Comanda;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
@@ -34,22 +35,24 @@ public class MainControl {
         this.activity = activity;
         comanda = new Comanda();
         produtoItemDao = new ProdutoItemDao(this.activity);
-        listProdutoItems = new ArrayList<>();
+        atualizaListView();
     }
 
 
     public void atualizaListView() {
-        comanda.setProdutoItemCollection(this.listProdutoItems);
-
         try {
-            adapterProdutoItem = new ArrayAdapter<>(
-                    activity,
-                    android.R.layout.simple_list_item_1,
-                    produtoItemDao.getDao().queryForAll()
-            );
+            listProdutoItems = produtoItemDao.getDao().queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        atualizaTotalComanda();
+        comanda.setProdutoItemCollection(this.listProdutoItems);
+
+        adapterProdutoItem = new ArrayAdapter<>(
+                activity,
+                android.R.layout.simple_list_item_1,
+                listProdutoItems
+        );
         activity.getLvProdutos().setAdapter(adapterProdutoItem);
 
         addCliqueLongolvProdutoItem();
@@ -84,6 +87,7 @@ public class MainControl {
                     public void onClick(DialogInterface dialog, int which) {
                         produtoItem.setQuantidade(produtoItem.getQuantidade() - 1);
                         editar(produtoItem);
+                        atualizaTotalComanda();
                         if (produtoItem.getQuantidade() < 1) {
                             try {
                                 produtoItemDao.getDao().delete(produtoItem);
@@ -100,6 +104,7 @@ public class MainControl {
                     public void onClick(DialogInterface dialog, int which) {
                         produtoItem.setQuantidade(produtoItem.getQuantidade() + 1);
                         editar(produtoItem);
+                        atualizaListView();
                     }
                 });
                 alerta.setNeutralButton("Fechar", new DialogInterface.OnClickListener() {
@@ -130,6 +135,7 @@ public class MainControl {
                 try {
                     produtoItemDao.getDao().delete(produtoItem);
                     adapterProdutoItem.remove(produtoItem);
+                    atualizaTotalComanda();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -163,6 +169,19 @@ public class MainControl {
         adapterProdutoItem.clear();
         produtoItemDao.deleteAll();
         listProdutoItems = new ArrayList<>();
+        atualizaTotalComanda();
+    }
+
+    public void atualizaTotalComanda() {
+        String totalString = activity.getString(R.string.total_text);
+        String moedaString = activity.getString(R.string.moeda_text);
+        Double totalComanda = 0.0;
+
+
+        for (int i = 0; i < listProdutoItems.size(); i++) {
+            totalComanda += listProdutoItems.get(i).getSubTotal();
+        }
+        activity.getTvTotal().setText(totalString + " " + moedaString + totalComanda);
     }
 
     public List<ProdutoItem> getListProdutoItems() {

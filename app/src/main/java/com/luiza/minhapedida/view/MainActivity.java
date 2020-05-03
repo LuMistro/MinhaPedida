@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         inicializa();
         control = new MainControl(this);
-        control.atualizaListView();
-
     }
 
     private void inicializa() {
