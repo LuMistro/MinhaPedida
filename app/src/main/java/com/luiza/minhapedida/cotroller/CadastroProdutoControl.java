@@ -2,7 +2,6 @@ package com.luiza.minhapedida.cotroller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -132,16 +131,16 @@ public class CadastroProdutoControl {
 
                 final AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
                 alerta.setIcon(android.R.drawable.ic_menu_edit);
-                alerta.setTitle("Produto");
+                alerta.setTitle(activity.getString(R.string.produto_text));
                 alerta.setMessage(produto.toString());
-                alerta.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+                alerta.setPositiveButton(activity.getString(R.string.editar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         preencheComProdutoSelecionado(produto);
                     }
                 });
 
-                alerta.setNeutralButton("Fechar", new DialogInterface.OnClickListener() {
+                alerta.setNeutralButton(activity.getString(R.string.fechar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         alerta.setCancelable(true);
@@ -173,15 +172,11 @@ public class CadastroProdutoControl {
             adapterProduto.add(produto); //Atualiza no ListView
 
             if (res > 0) {
-                Toast.makeText(activity, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.salvoSucesso), Toast.LENGTH_SHORT).show();
                 limpaCampos();
             } else {
-                Toast.makeText(activity, "Tente novamente em breve", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.tenteDeNovo), Toast.LENGTH_SHORT).show();
             }
-
-            //LOG
-            Log.i("Testando", "Cadastrou");
-//            Toast.makeText(activity, "Id:" + produto.getId(), Toast.LENGTH_SHORT).show();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -189,16 +184,16 @@ public class CadastroProdutoControl {
 
     public void confirmarExclusaoAction(final Produto produto) {
         AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
-        alerta.setTitle("Excluindo Produto");
-        alerta.setMessage("Deseja realmente excluir o produto " + produto.getNome() + " do sistema?");
+        alerta.setTitle(activity.getString(R.string.excluindo));
+        alerta.setMessage(activity.getString(R.string.confirmaExclusao) + produto.getNome() + "?");
         alerta.setIcon(android.R.drawable.ic_menu_delete);
-        alerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+        alerta.setNegativeButton(activity.getString(R.string.nao), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CadastroProdutoControl.this.produto = null;
             }
         });
-        alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        alerta.setPositiveButton(activity.getString(R.string.sim), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {

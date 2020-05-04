@@ -19,4 +19,13 @@
     <string name="nomeInvalido">Nome inválido</string>
     <string name="numeroInvalido">Preço deve estar entre 0 e 9999</string>
     <string name="listarAtivos">Listar Somente os Ativos</string>
+    <string name="editar">Editar</string>
+    <string name="fechar">Fechar</string>
+    <string name="salvoSucesso">Salvo com sucesso!</string>
+    <string name="tenteDeNovo">Tente novamente mais tarde...</string>
+    <string name="excluindo">Excluindo Produto</string>
+    <string name="confirmaExclusao">Deseja realmente excluir o produto</string>
+    <string name="nao">Não</string>
+    <string name="sim">Sim</string>
+    <string name="sucesso">Sucesso!</string>
 </resources>

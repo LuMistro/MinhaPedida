@@ -19,4 +19,13 @@
     <string name="nomeInvalido">Invalid Name</string>
     <string name="numeroInvalido">Price must be between 0 and 9999</string>
     <string name="listarAtivos">List Assets Only</string>
+    <string name="editar">Edit</string>
+    <string name="fechar">Close</string>
+    <string name="salvoSucesso">Saved successfully!</string>
+    <string name="tenteDeNovo">Try again later...</string>
+    <string name="excluindo">Deleting product</string>
+    <string name="confirmaExclusao">Do you really want to delete the product</string>
+    <string name="nao">No</string>
+    <string name="sim">Yes</string>
+    <string name="sucesso">Success!</string>
 </resources>

@@ -80,7 +80,7 @@ public class MainControl {
 
                 final AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
                 alerta.setIcon(android.R.drawable.ic_menu_edit);
-                alerta.setTitle("Produto");
+                alerta.setTitle(activity.getString(R.string.produto_text));
                 alerta.setMessage(produtoItem.toString());
                 alerta.setNegativeButton("-1un", new DialogInterface.OnClickListener() {
                     @Override
@@ -107,7 +107,7 @@ public class MainControl {
                         atualizaListView();
                     }
                 });
-                alerta.setNeutralButton("Fechar", new DialogInterface.OnClickListener() {
+                alerta.setNeutralButton(activity.getString(R.string.fechar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         alerta.setCancelable(true);
@@ -120,16 +120,16 @@ public class MainControl {
 
     public void confirmarExclusaoAction(final ProdutoItem produtoItem) {
         AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
-        alerta.setTitle("Excluindo Produto da comanda");
-        alerta.setMessage("Deseja realmente excluir o produto " + produtoItem.getProduto().getNome() + " da comanda?");
+        alerta.setTitle(activity.getString(R.string.excluindo));
+        alerta.setMessage(activity.getString(R.string.confirmaExclusao) + produtoItem.getProduto().getNome() + "?");
         alerta.setIcon(android.R.drawable.ic_menu_delete);
-        alerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+        alerta.setNegativeButton(activity.getString(R.string.nao), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 MainControl.this.produtoItem = null;
             }
         });
-        alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        alerta.setPositiveButton(activity.getString(R.string.sim), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -155,9 +155,9 @@ public class MainControl {
             adapterProdutoItem.notifyDataSetChanged(); //Atualiza no view
             int res = produtoItemDao.getDao().update(produtoItem); //Editar no banco de dados
             if (res > 0) {
-                Toast.makeText(activity, "Sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.sucesso), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(activity, "Tente mais tarde", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.tenteDeNovo), Toast.LENGTH_SHORT).show();
                 System.out.println(produtoItemDao.getDao().queryForAll());
             }
         } catch (SQLException e) {
