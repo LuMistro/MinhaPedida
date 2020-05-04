@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_bordas_arredondadas"
-            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <TextView
@@ -70,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_bordas_arredondadas"
-            android:onClick="salvarProdutoAction"
+            android:onClick="cadastrarProduto"
             android:text="@string/salvar"
             android:textColor="@color/white" />
 

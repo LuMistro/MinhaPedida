@@ -16,4 +16,6 @@
     <string name="nomeProduto">Product Name</string>
     <string name="preco">Value</string>
     <string name="salvar">Save</string>
+    <string name="nomeInvalido">Invalid Name</string>
+    <string name="numeroInvalido">Price must be between 0 and 9999</string>
 </resources>

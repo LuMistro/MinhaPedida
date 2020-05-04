@@ -30,5 +30,4 @@ public class ProdutoDao extends DaoHelper<Produto> {
         }
         return null;
     }
-
 }

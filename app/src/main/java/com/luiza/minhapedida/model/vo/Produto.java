@@ -10,7 +10,7 @@ import java.io.Serializable;
 @DatabaseTable(tableName = "produto")
 public class Produto implements Serializable {
 
-    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+    @DatabaseField(allowGeneratedIdInsert = false, generatedId = true)
     private Integer id;
 
     @DatabaseField(canBeNull = false, width = 110, unique = true)
@@ -67,10 +67,13 @@ public class Produto implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        if (status == true) {
-            return this.nome + " - " + "$" + this.preco + " Status: Ativo";
-        } else {
-            return this.nome + " - " + "$" + this.preco + " Status: Inativo";
+        if (this.status != null) {
+            if (this.status == true) {
+                return this.nome + " - " + "$" + this.preco + " - Status: Ativo";
+            } else {
+                return this.nome + " - " + "$" + this.preco + " - Status: Inativo";
+            }
         }
+        return "";
     }
 }

@@ -17,6 +17,7 @@ public class AddProdutoControl {
     private ProdutoItemDao produtoItemDao;
     private ProdutoDao produtoDao;
     private ProdutoItem produtoItem;
+    private Boolean jaFoiCriado;
 
     public AddProdutoControl(addProduto_activity activity) {
         this.activity = activity;
@@ -28,7 +29,7 @@ public class AddProdutoControl {
 
     private void inicializa() {
         configuraNumberPicker();
-        configSpinner();
+        attSpinner();
         produtoItem = new ProdutoItem();
     }
 
@@ -39,26 +40,30 @@ public class AddProdutoControl {
         activity.getNumberPicker().setWrapSelectorWheel(true);
     }
 
-    private void configSpinner() {
+    public void attSpinner() {
+        adapterProdutos = new ArrayAdapter<>(
+                activity,
+                android.R.layout.simple_spinner_item,
+                produtoDao.listaSomenteOsAtivos()
+        );
+
+        //A linha abaixo serve para deixar um separação maior entre os itens do dropdown
+        adapterProdutos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        activity.getSpinner().setAdapter(adapterProdutos);
+    }
+
+    public void configSpinner() {
         try {
-            produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0, true));
-            produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0, true));
-            produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0, true));
-            produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5, true));
-            produtoDao.getDao().createIfNotExists(new Produto(5, "Pastel", 3.5, true));
-            produtoDao.getDao().createIfNotExists(new Produto(6, "Petiscos", 6.0, true));
-            produtoDao.getDao().createIfNotExists(new Produto(7, "Produto Inativo", 6.0, false));
-
-            adapterProdutos = new ArrayAdapter<>(
-                    activity,
-                    android.R.layout.simple_spinner_item,
-                    produtoDao.listaSomenteOsAtivos()
-            );
-
-            System.out.println(produtoDao.listar());
-            //A linha abaixo serve para deixar um separação maior entre os itens do dropdown
-            adapterProdutos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            activity.getSpinner().setAdapter(adapterProdutos);
+            if (jaFoiCriado == null || jaFoiCriado == false) {
+                produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0, true));
+                produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0, true));
+                produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0, true));
+                produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5, true));
+                produtoDao.getDao().createIfNotExists(new Produto(5, "Pastel", 3.5, true));
+                produtoDao.getDao().createIfNotExists(new Produto(6, "Petiscos", 6.0, true));
+                jaFoiCriado = true;
+            }
+            attSpinner();
         } catch (SQLException e) {
             e.printStackTrace();
         }

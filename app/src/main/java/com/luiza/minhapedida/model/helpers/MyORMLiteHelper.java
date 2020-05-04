@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     //Configuração do banco de dados
     private static final String DATABASE_NAME = "comandasMinhaPedida.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     public MyORMLiteHelper(Context c) {
         super(c, DATABASE_NAME, null, DATABASE_VERSION);

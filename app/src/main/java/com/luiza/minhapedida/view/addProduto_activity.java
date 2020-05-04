@@ -27,7 +27,7 @@ public class addProduto_activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_produto);
         inicializa();
         control = new AddProdutoControl(this);
-
+        control.configSpinner();
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +42,12 @@ public class addProduto_activity extends AppCompatActivity {
                 control.cadastrarProdutoItem(control.getProdutoItem());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        control = new AddProdutoControl(this);
     }
 
     private void inicializa() {
