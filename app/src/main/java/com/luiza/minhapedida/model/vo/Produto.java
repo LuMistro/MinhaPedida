@@ -10,10 +10,10 @@ import java.io.Serializable;
 @DatabaseTable(tableName = "produto")
 public class Produto implements Serializable {
 
-    @DatabaseField(allowGeneratedIdInsert = false, generatedId = true)
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
-    @DatabaseField(canBeNull = false, width = 110, unique = true)
+    @DatabaseField(canBeNull = false, width = 110)
     private String nome;
 
     @DatabaseField(canBeNull = false)

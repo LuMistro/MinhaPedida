@@ -42,7 +42,7 @@ public class cadastrarProduto_activity extends AppCompatActivity {
     }
 
     public void salvarProdutoAction(View view) {
-        control.pegaDadosTela();
+        control.salvarAction();
     }
 
     public EditText getEtNomeProduto() {

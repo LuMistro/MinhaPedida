@@ -54,10 +54,6 @@ public class CadastroProdutoControl {
         }
     }
 
-    public void salvarAction() {
-        cadastrar();
-        atualizaListView();
-    }
 
     private void limpaCampos() {
         activity.getEtPrecoProduto().setText("");
@@ -109,6 +105,12 @@ public class CadastroProdutoControl {
         });
     }
 
+    private void preencheComProdutoSelecionado(Produto produtoParaEditar) {
+        activity.getEtNomeProduto().setText(produtoParaEditar.getNome().toString());
+        activity.getEtPrecoProduto().setText(produtoParaEditar.getPreco().toString());
+        activity.getSwitchStatus().setChecked(produtoParaEditar.getStatus());
+    }
+
     public void addCliqueCurtolvProdutoItem() {
         activity.getLvProdutosCadastrados().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,21 +122,13 @@ public class CadastroProdutoControl {
                 alerta.setIcon(android.R.drawable.ic_menu_edit);
                 alerta.setTitle("Produto");
                 alerta.setMessage(produto.toString());
-                alerta.setPositiveButton("Inativar", new DialogInterface.OnClickListener() {
+                alerta.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        produto.setStatus(false);
-                        editar(produto);
+                        preencheComProdutoSelecionado(produto);
                     }
                 });
 
-                alerta.setNegativeButton("Ativar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        produto.setStatus(true);
-                        editar(produto);
-                    }
-                });
                 alerta.setNeutralButton("Fechar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -146,6 +140,18 @@ public class CadastroProdutoControl {
         });
     }
 
+    public void salvarAction() {
+        if (produtoDao == null) {
+            cadastrar();
+        } else {
+            editar(produto);
+        }
+
+        produto = null;
+        limpaCampos();
+    }
+
+
     public void cadastrar() {
         produto = new Produto();
         pegaDadosTela();
@@ -154,7 +160,7 @@ public class CadastroProdutoControl {
             adapterProduto.add(produto); //Atualiza no ListView
 
             if (res > 0) {
-                Toast.makeText(activity, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
                 limpaCampos();
             } else {
                 Toast.makeText(activity, "Tente novamente em breve", Toast.LENGTH_SHORT).show();
@@ -199,14 +205,14 @@ public class CadastroProdutoControl {
 
 
     private void editar(Produto produtoSelecionado) {
-        produto = produtoSelecionado;
+        Integer id = produtoSelecionado.getId();
         try {
-            adapterProduto.notifyDataSetChanged(); //Atualiza no view
-            int res = produtoDao.getDao().update(produto); //Editar no banco de dados
-            if (res > 0) {
-                Toast.makeText(activity, "Sucesso", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(activity, "Tente mais tarde", Toast.LENGTH_SHORT).show();
+
+            Produto verificaSeExiste = produtoDao.getDao().queryForId(id);
+            if (verificaSeExiste != null) {
+                produtoDao.getDao().deleteById(id);
+                cadastrar();
+                atualizaListView();
             }
         } catch (SQLException e) {
             e.printStackTrace();
