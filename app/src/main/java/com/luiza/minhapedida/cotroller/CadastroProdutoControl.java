@@ -10,11 +10,10 @@ import android.widget.Toast;
 import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.model.dao.ProdutoDao;
 import com.luiza.minhapedida.model.vo.Produto;
-import com.luiza.minhapedida.utils.validadores.Validadores;
+import com.luiza.minhapedida.utils.Validadores;
 import com.luiza.minhapedida.view.cadastrarProduto_activity;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class CadastroProdutoControl {
 
@@ -27,9 +26,6 @@ public class CadastroProdutoControl {
     private String erroPreço;
     private String erroNome;
     private boolean ehCadastro = true;
-
-    private List<Produto> listProduto;
-
 
     public CadastroProdutoControl(cadastrarProduto_activity activity) {
         this.activity = activity;

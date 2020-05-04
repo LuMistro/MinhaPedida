@@ -160,6 +160,7 @@ public class MainControl {
         }
     }
 
+
     public void limparLista() {
         adapterProdutoItem.clear();
         produtoItemDao.deleteAll();

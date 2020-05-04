@@ -1,6 +1,4 @@
-package com.luiza.minhapedida.utils.validadores;
-
-import android.widget.EditText;
+package com.luiza.minhapedida.utils;
 
 public class Validadores {
 
