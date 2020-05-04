@@ -27,6 +27,7 @@ public class CadastroProdutoControl {
     private Validadores valida;
     private String erroPreço;
     private String erroNome;
+    private boolean ehCadastro = true;
 
     private List<Produto> listProduto;
 
@@ -106,6 +107,7 @@ public class CadastroProdutoControl {
     }
 
     private void preencheComProdutoSelecionado(Produto produtoParaEditar) {
+        ehCadastro = false;
         activity.getEtNomeProduto().setText(produtoParaEditar.getNome().toString());
         activity.getEtPrecoProduto().setText(produtoParaEditar.getPreco().toString());
         activity.getSwitchStatus().setChecked(produtoParaEditar.getStatus());
@@ -141,10 +143,11 @@ public class CadastroProdutoControl {
     }
 
     public void salvarAction() {
-        if (produtoDao == null) {
+        if (ehCadastro) {
             cadastrar();
         } else {
             editar(produto);
+            ehCadastro = true;
         }
 
         produto = null;
