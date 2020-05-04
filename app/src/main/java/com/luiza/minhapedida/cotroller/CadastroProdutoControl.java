@@ -80,11 +80,21 @@ public class CadastroProdutoControl {
 
     public void atualizaListView() {
         try {
-            adapterProduto = new ArrayAdapter<>(
-                    activity,
-                    android.R.layout.simple_list_item_1,
-                    produtoDao.listar()
-            );
+            if (activity.getCheckBoxListarSohAtivos().isChecked()) {
+                adapterProduto = new ArrayAdapter<>(
+                        activity,
+                        android.R.layout.simple_list_item_1,
+                        produtoDao.listaSomenteOsAtivos()
+                );
+            } else {
+                adapterProduto = new ArrayAdapter<>(
+                        activity,
+                        android.R.layout.simple_list_item_1,
+                        produtoDao.listar()
+                );
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

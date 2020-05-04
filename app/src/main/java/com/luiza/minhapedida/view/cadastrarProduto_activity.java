@@ -3,6 +3,7 @@ package com.luiza.minhapedida.view;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -20,6 +21,7 @@ public class cadastrarProduto_activity extends AppCompatActivity {
     private ListView lvProdutosCadastrados;
     private Switch switchStatus;
     private CadastroProdutoControl control;
+    private CheckBox checkBoxListarSohAtivos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,13 @@ public class cadastrarProduto_activity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastrar_produto);
         inicializa();
         control = new CadastroProdutoControl(this);
+
+        checkBoxListarSohAtivos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                control.atualizaListView();
+            }
+        });
     }
 
     private void inicializa() {
@@ -35,6 +44,7 @@ public class cadastrarProduto_activity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         lvProdutosCadastrados = findViewById(R.id.lvProdutosCadastrados);
         switchStatus = findViewById(R.id.switchStatus);
+        checkBoxListarSohAtivos = findViewById(R.id.checkBoxListarAtivos);
     }
 
     public void salvarProdutoAction(View view) {
@@ -79,5 +89,13 @@ public class cadastrarProduto_activity extends AppCompatActivity {
 
     public void setSwitchStatus(Switch switchStatus) {
         this.switchStatus = switchStatus;
+    }
+
+    public CheckBox getCheckBoxListarSohAtivos() {
+        return checkBoxListarSohAtivos;
+    }
+
+    public void setCheckBoxListarSohAtivos(CheckBox checkBoxListarSohAtivos) {
+        this.checkBoxListarSohAtivos = checkBoxListarSohAtivos;
     }
 }

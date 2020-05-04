@@ -18,4 +18,5 @@
     <string name="salvar">Salvar</string>
     <string name="nomeInvalido">Nome inválido</string>
     <string name="numeroInvalido">Preço deve estar entre 0 e 9999</string>
+    <string name="listarAtivos">Listar Somente os Ativos</string>
 </resources>

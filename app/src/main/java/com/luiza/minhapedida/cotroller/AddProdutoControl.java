@@ -17,7 +17,6 @@ public class AddProdutoControl {
     private ProdutoItemDao produtoItemDao;
     private ProdutoDao produtoDao;
     private ProdutoItem produtoItem;
-    private Boolean jaFoiCriado;
 
     public AddProdutoControl(addProduto_activity activity) {
         this.activity = activity;

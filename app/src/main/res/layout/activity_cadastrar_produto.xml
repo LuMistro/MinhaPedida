@@ -74,12 +74,21 @@
             android:textColor="@color/white" />
 
 
+        <CheckBox
+            android:id="@+id/checkBoxListarAtivos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="@string/listarAtivos"
+            android:textColor="@color/white" />
+
         <ListView
             android:id="@+id/lvProdutosCadastrados"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:background="@color/whiteTransparent" />
+
 
     </LinearLayout>
 </LinearLayout>
