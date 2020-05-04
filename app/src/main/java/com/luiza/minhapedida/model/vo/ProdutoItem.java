@@ -22,19 +22,15 @@ public class ProdutoItem implements Serializable {
     @DatabaseField(foreign = true, foreignColumnName = "id")
     private Produto produto;
 
-    @DatabaseField(foreign = true, foreignColumnName = "id")
-    private Comanda comanda;
-
 
     public ProdutoItem() {
     }
 
-    public ProdutoItem(Integer id, Integer quantidade, Double subTotal, Produto produto, Comanda comanda) {
+    public ProdutoItem(Integer id, Integer quantidade, Double subTotal, Produto produto) {
         this.id = id;
         this.quantidade = quantidade;
         this.subTotal = subTotal;
         this.produto = produto;
-        this.comanda = comanda;
     }
 
     public Integer getId() {
@@ -67,14 +63,6 @@ public class ProdutoItem implements Serializable {
 
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
-    }
-
-    public Comanda getComanda() {
-        return comanda;
-    }
-
-    public void setComanda(Comanda comanda) {
-        this.comanda = comanda;
     }
 
     @NonNull

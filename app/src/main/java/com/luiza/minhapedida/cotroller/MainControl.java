@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.luiza.minhapedida.R;
 import com.luiza.minhapedida.model.dao.ProdutoItemDao;
-import com.luiza.minhapedida.model.vo.Comanda;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
 import com.luiza.minhapedida.view.MainActivity;
 
@@ -27,13 +26,10 @@ public class MainControl {
 
     private ProdutoItem produtoItem;
 
-    private Comanda comanda;
-
     private ProdutoItemDao produtoItemDao;
 
     public MainControl(MainActivity activity) {
         this.activity = activity;
-        comanda = new Comanda();
         produtoItemDao = new ProdutoItemDao(this.activity);
         atualizaListView();
     }
@@ -46,7 +42,6 @@ public class MainControl {
             e.printStackTrace();
         }
         atualizaTotalComanda();
-        comanda.setProdutoItemCollection(this.listProdutoItems);
 
         adapterProdutoItem = new ArrayAdapter<>(
                 activity,

@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.luiza.minhapedida.model.vo.Comanda;
 import com.luiza.minhapedida.model.vo.Produto;
 import com.luiza.minhapedida.model.vo.ProdutoItem;
 
@@ -24,7 +23,6 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
-            TableUtils.createTableIfNotExists(connectionSource, Comanda.class);
             TableUtils.createTableIfNotExists(connectionSource, Produto.class);
             TableUtils.createTableIfNotExists(connectionSource, ProdutoItem.class);
 
@@ -38,7 +36,6 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
         try {
-            TableUtils.dropTable(connectionSource, Comanda.class, true);
             TableUtils.dropTable(connectionSource, Produto.class, true);
             TableUtils.dropTable(connectionSource, ProdutoItem.class, true);
             onCreate(sqLiteDatabase, connectionSource);
