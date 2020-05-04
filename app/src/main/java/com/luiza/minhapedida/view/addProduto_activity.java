@@ -27,7 +27,6 @@ public class addProduto_activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_produto);
         inicializa();
         control = new AddProdutoControl(this);
-        control.configSpinner();
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override

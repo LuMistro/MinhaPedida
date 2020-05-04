@@ -37,10 +37,6 @@ public class cadastrarProduto_activity extends AppCompatActivity {
         switchStatus = findViewById(R.id.switchStatus);
     }
 
-    public void cadastrarProduto(View view) {
-        control.salvarAction();
-    }
-
     public void salvarProdutoAction(View view) {
         control.salvarAction();
     }

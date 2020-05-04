@@ -52,24 +52,6 @@ public class AddProdutoControl {
         activity.getSpinner().setAdapter(adapterProdutos);
     }
 
-    public void configSpinner() {
-        try {
-            if (jaFoiCriado == null || jaFoiCriado == false) {
-                produtoDao.getDao().createIfNotExists(new Produto(1, "Refrigerante", 3.0, true));
-                produtoDao.getDao().createIfNotExists(new Produto(2, "Cerveja", 5.0, true));
-                produtoDao.getDao().createIfNotExists(new Produto(3, "Batata Frita", 10.0, true));
-                produtoDao.getDao().createIfNotExists(new Produto(4, "Água", 2.5, true));
-                produtoDao.getDao().createIfNotExists(new Produto(5, "Pastel", 3.5, true));
-                produtoDao.getDao().createIfNotExists(new Produto(6, "Petiscos", 6.0, true));
-                jaFoiCriado = true;
-            }
-            attSpinner();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void pegaDadosTela() {
         produtoItem.setProduto((Produto) activity.getSpinner().getSelectedItem());
         produtoItem.setQuantidade(activity.getNumberPicker().getValue());

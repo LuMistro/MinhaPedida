@@ -205,6 +205,11 @@ public class CadastroProdutoControl {
 
 
     private void editar(Produto produtoSelecionado) {
+        produto.setId(produtoSelecionado.getId());
+        produto.setNome(produtoSelecionado.getNome());
+        produto.setPreco(produtoSelecionado.getPreco());
+        produto.setStatus(produtoSelecionado.getStatus());
+
         Integer id = produtoSelecionado.getId();
         try {
 
@@ -214,8 +219,10 @@ public class CadastroProdutoControl {
                 cadastrar();
                 atualizaListView();
             }
-        } catch (SQLException e) {
+        } catch (
+                SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
